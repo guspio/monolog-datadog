@@ -14,12 +14,11 @@ matrix:
     - php: nightly
 
 before_install:
-  - composer self-update
   - composer global require "squizlabs/php_codesniffer=*"
 
 install:
   - composer install --no-interaction
 
 script:
-  - vendor/bin/phpcs
-  # - vendor/bin/phpunit
+  - ./vendor/bin/phpcs
+  # - ./vendor/bin/phpunit

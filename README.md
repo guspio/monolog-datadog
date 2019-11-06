@@ -1,3 +1,8 @@
+[![Build Status](https://img.shields.io/travis/guspio/monolog-datadog?branch=master&style=flat-square)](https://travis-ci.org/guspio/monolog-datadog)
+[![Latest Stable Version](https://img.shields.io/packagist/v/guspio/monolog-datadog.svg?style=flat-square)](https://packagist.org/packages/guspio/monolog-datadog)
+![PHP from Packagist](https://img.shields.io/packagist/php-v/guspio/monolog-datadog?style=flat-square)
+![Licence](https://img.shields.io/packagist/l/guspio/monolog-datadog?style=flat-square)
+
 # Datadog Monolog integration
 
 

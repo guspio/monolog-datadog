@@ -13,12 +13,9 @@ matrix:
   allow_failures:
     - php: nightly
 
-before_install:
-  - composer global require "squizlabs/php_codesniffer=*"
-
 install:
-  - composer install --no-interaction
+  - composer install
 
 script:
-  - ./vendor/bin/phpcs
+  - ./vendor/bin/phpcs --standard=PSR2 src/
   # - ./vendor/bin/phpunit

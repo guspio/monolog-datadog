@@ -84,7 +84,9 @@ class DatadogHandler extends AbstractProcessingHandler
         $hostname = $this->getHostname();
         $service = $this->getService($record);
 
-        $url = self::DATADOG_LOG_HOST.'/v1/input/' . $this->apiKey . '?ddsource=' . $source . '&service=' . $service . '&hostname=' . $hostname;
+        $url = self::DATADOG_LOG_HOST.'/v1/input/';
+        $url .= $this->apiKey;
+        $url .= '?ddsource=' . $source . '&service=' . $service . '&hostname=' . $hostname;
 
         $ch = curl_init();
 

@@ -118,9 +118,9 @@ class DatadogHandler extends AbstractProcessingHandler
 
     /**
      * Get Datadog Source from $attributes params.
-     * @return mixed|string
+     * @return string
      */
-    protected function getSource(): mixed
+    protected function getSource(): string
     {
         return !empty($this->attributes['source']) ? $this->attributes['source'] : 'php';
     }
@@ -128,9 +128,9 @@ class DatadogHandler extends AbstractProcessingHandler
     /**
      * Get Datadog Service from $attributes params.
      * @param $record
-     * @return mixed
+     * @return string
      */
-    protected function getService($record): mixed
+    protected function getService($record): string
     {
         $channel = json_decode($record, true);
 
@@ -139,9 +139,9 @@ class DatadogHandler extends AbstractProcessingHandler
 
     /**
      * Get Datadog Hostname from $attributes params.
-     * @return mixed
+     * @return string
      */
-    protected function getHostname(): mixed
+    protected function getHostname(): string
     {
         return !empty($this->attributes['hostname']) ? $this->attributes['hostname'] : $_SERVER['SERVER_NAME'];
     }

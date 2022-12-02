@@ -33,26 +33,27 @@ class DatadogHandler extends AbstractProcessingHandler
      *
      * @var string
      */
-    private $apiKey;
+    private string $apiKey;
 
     /**
-     * Datadog optionals attributes
+     * Datadog's optionals attributes
      *
      * @var array
      */
-    private $attributes;
+    private array $attributes;
 
     /**
-     * @param string     $apiKey     Datadog Api Key access
-     * @param array      $attributes Some options fore Datadog Logs
-     * @param string|int $level      The minimum logging level at which this handler will be triggered
-     * @param bool       $bubble     Whether the messages that are handled can bubble up the stack or not
+     * @param string $apiKey Datadog Api Key access
+     * @param array $attributes Some options fore Datadog Logs
+     * @param int $level The minimum logging level at which this handler will be triggered
+     * @param bool $bubble Whether the messages that are handled can bubble up the stack or not
+     * @throws Exception
      */
     public function __construct(
-        string $apiKey,
-        array $attributes = [],
-        $level = Logger::DEBUG,
-        bool $bubble = true
+        string     $apiKey,
+        array      $attributes = [],
+        int        $level = Logger::DEBUG,
+        bool       $bubble = true
     ) {
         if (!extension_loaded('curl')) {
             throw new MissingExtensionException('The curl extension is needed to use the DatadogHandler');
@@ -67,7 +68,7 @@ class DatadogHandler extends AbstractProcessingHandler
     /**
      * Handles a log record
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         $this->send($record['formatted']);
     }
@@ -103,8 +104,10 @@ class DatadogHandler extends AbstractProcessingHandler
     /**
      * Get Datadog Api Key from $attributes params.
      * @param string $apiKey
+     * @return string
+     * @throws Exception
      */
-    protected function getApiKey($apiKey)
+    protected function getApiKey(string $apiKey): string
     {
         if ($apiKey) {
             return $apiKey;
@@ -115,18 +118,19 @@ class DatadogHandler extends AbstractProcessingHandler
 
     /**
      * Get Datadog Source from $attributes params.
-     * @param string $apiKey
+     * @return mixed|string
      */
-    protected function getSource()
+    protected function getSource(): mixed
     {
         return !empty($this->attributes['source']) ? $this->attributes['source'] : 'php';
     }
 
     /**
      * Get Datadog Service from $attributes params.
-     * @param string $apiKey
+     * @param $record
+     * @return mixed
      */
-    protected function getService($record)
+    protected function getService($record): mixed
     {
         $channel = json_decode($record, true);
 
@@ -135,9 +139,9 @@ class DatadogHandler extends AbstractProcessingHandler
 
     /**
      * Get Datadog Hostname from $attributes params.
-     * @param string $apiKey
+     * @return mixed
      */
-    protected function getHostname()
+    protected function getHostname(): mixed
     {
         return !empty($this->attributes['hostname']) ? $this->attributes['hostname'] : $_SERVER['SERVER_NAME'];
     }
@@ -147,7 +151,7 @@ class DatadogHandler extends AbstractProcessingHandler
      *
      * @return JsonFormatter
      */
-    protected function getDefaultFormatter()
+    protected function getDefaultFormatter(): JsonFormatter
     {
         return new JsonFormatter();
     }

@@ -1,5 +1,5 @@
 {
-    "name": "thestalnakergroup/monolog-datadog",
+    "name": "guspio/monolog-datadog",
     "description": "Monolog Handler for Datadog Logs",
     "type": "library",
     "license": "MIT",

@@ -1,5 +1,5 @@
 {
-    "name": "guspio/monolog-datadog",
+    "name": "thestalnakergroup/monolog-datadog",
     "description": "Monolog Handler for Datadog Logs",
     "type": "library",
     "license": "MIT",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^8.1",
         "ext-curl": "*",
         "monolog/monolog": "~2.0"
     },
@@ -25,7 +25,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-          "MonologDatadog\\": "tests/Monolog"
+            "MonologDatadog\\": "tests/Monolog"
         }
     }
 }

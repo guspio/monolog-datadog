@@ -2,6 +2,7 @@
 
 namespace MonologDatadog\Handler;
 
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 
@@ -147,7 +148,7 @@ class DatadogHandler extends AbstractProcessingHandler
      *
      * @return JsonFormatter
      */
-    protected function getDefaultFormatter()
+    protected function getDefaultFormatter(): FormatterInterface
     {
         return new JsonFormatter();
     }

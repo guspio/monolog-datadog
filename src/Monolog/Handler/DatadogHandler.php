@@ -2,6 +2,7 @@
 
 namespace MonologDatadog\Handler;
 
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Logger;
 use Monolog\Handler\AbstractProcessingHandler;
 
@@ -67,7 +68,7 @@ class DatadogHandler extends AbstractProcessingHandler
     /**
      * Handles a log record
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         $this->send($record['formatted']);
     }
@@ -84,7 +85,7 @@ class DatadogHandler extends AbstractProcessingHandler
         $hostname = $this->getHostname();
         $service = $this->getService($record);
 
-        $url = self::DATADOG_LOG_HOST.'/v1/input/';
+        $url = self::DATADOG_LOG_HOST . '/v1/input/';
         $url .= $this->apiKey;
         $url .= '?ddsource=' . $source . '&service=' . $service . '&hostname=' . $hostname;
 
@@ -147,7 +148,7 @@ class DatadogHandler extends AbstractProcessingHandler
      *
      * @return JsonFormatter
      */
-    protected function getDefaultFormatter()
+    protected function getDefaultFormatter(): FormatterInterface
     {
         return new JsonFormatter();
     }
